@@ -1,5 +1,8 @@
 {
   "url": "https://ton.vote",
   "name": "TON Vote",
-  "iconUrl": "https://ton.vote/logo.png"
+  "iconUrl": "https://ton.vote/logo.png",
+  "termsUrl": "https://ton.vote",
+  "privacyUrl": "https://ton.vote"
 }
+
