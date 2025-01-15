@@ -46,12 +46,10 @@ export const Apps: FC = () => {
 
     const submitHandler = async () => {
         const value = parseFloat(inputValue);
-
         if (isNaN(value) || value <= 0) {
             alert("Jetton amount must be greater than 0");
             return;
         }
-
         try {
             const walletAddress = wallet?.account?.address || ''; // Безопасный доступ
             await sendSwapJetton(sender, toNano(value.toString()), walletAddress); // Ожидаем выполнение транзакции
@@ -100,38 +98,46 @@ export const Apps: FC = () => {
                 <p className={'w-[90%] mx-auto '}>This is some text that wraps around the image.
                     The image is floated to the left</p>
                 <div className={'w-[90%] h-64 bg-blue-600 mx-auto rounded-xl my-3'}></div>
-                <Card>
-                    <HeadLine
-                        title={'Send'}
-                        balance={balance}
-                        max={'Max'}
-                    />
-                    <div className={'flex gap-3 items-center justify-between'}>
-                        <Logo
-                            url={'logo.png'}
-                            title={'Ton'}
+                <div className={'relative'}>
+                    <Card>
+                        <HeadLine
+                            title={'Send'}
+                            balance={balance}
+                            max={'Max'}
                         />
-                        <Input
-                            type={'number'}
-                            className={'max-w-32 h-12 text-xl text-end'}
-                            value={inputValue}
-                            onChange={handleInputChange}
-                        />
+                        <div className={'flex gap-3 items-center justify-between'}>
+                            <Logo
+                                url={'logo.png'}
+                                title={'Ton'}
+                            />
+                            <Input
+                                type={'number'}
+                                className={'max-w-32 h-12 text-xl text-end'}
+                                value={inputValue}
+                                onChange={handleInputChange}
+                            />
+
+                        </div>
+                    </Card>
+                    <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(50%+6px)] h-6 w-6 rounded-full bottom border-primary bg-secondary">
+                        <img src={publicUrl('exchange.png')} alt="Ton" className="w-6 h-6 p-1" onClick={()=> {
+                            alert("Listing plane to 10.01.2025");
+                        }}/>
                     </div>
-                </Card>
-                <Card>
-                    <HeadLine
-                        title={'Receive'}
-                        balance={balance}
-                    />
-                    <div className={'flex items-center justify-between'}>
-                        <Logo
-                            url={'logo.png'}
-                            title={'Traffic'}
+                    <Card>
+                        <HeadLine
+                            title={'Receive'}
+                            balance={balance}
                         />
-                        <p className={'mr-3 text-xl'}>{jettonAmount}</p>
-                    </div>
-                </Card>
+                        <div className={'flex items-center justify-between'}>
+                            <Logo
+                                url={'logo.png'}
+                                title={'Traffic'}
+                            />
+                            <p className={'mr-3 text-xl '}>{jettonAmount}</p>
+                        </div>
+                    </Card>
+                </div>
                 <div className="flex justify-center mt-3">
                     <Button className={'w-[90%] h-12 bg-blue-600 hover:bg-blue-900'}
                             onClick={submitHandler}>Swap</Button>
