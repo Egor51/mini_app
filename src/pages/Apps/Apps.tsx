@@ -11,6 +11,7 @@ import {useSwapContract} from "@/hooks/useMainContract.ts";
 import {useTonConnect} from "@/hooks/useTonConnect.ts";
 import {Placeholder, Text} from "@telegram-apps/telegram-ui";
 import {publicUrl} from "@/helpers/publicUrl.ts";
+import {Paragraph} from "@/components/UI/paragraph.tsx";
 
 export const Apps: FC = () => {
     const wallet = useTonWallet();
@@ -83,7 +84,10 @@ export const Apps: FC = () => {
     return (
         <Page>
             <TonConnectButton className="ton-connect-page__button" />
-            <div className={'mx-auto max-w-96'}>
+
+            <div className={'mx-auto max-[90%]'}>
+                <p className={'w-[90%] mx-auto'}>Buy Jetton</p>
+                <div className={'w-[90%] h-64 bg-blue-600 mx-auto rounded-xl my-6'}></div>
                 <Card>
                     <HeadLine
                         title={'Send'}
@@ -118,8 +122,11 @@ export const Apps: FC = () => {
                 </Card>
                 <div className="flex justify-center mt-4">
                     <Button className={'w-[90%] h-12 bg-blue-600 hover:bg-blue-900'}
-                            onClick={submitHandler} >Swap</Button>
+                            onClick={submitHandler}>Swap</Button>
                 </div>
+                <Paragraph/>
+                <Paragraph/>
+                <Paragraph/>
             </div>
         </Page>
     );
