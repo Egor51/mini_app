@@ -5,7 +5,7 @@ import {Input} from "@/components/UI/input.tsx";
 import {HeadLine} from "@/components/UI/headline.tsx";
 import {Card} from "@/components/UI/Card.tsx";
 import {Button} from "@/components/UI/button.tsx";
-import {toNano} from "@ton/core";
+import { toNano} from "@ton/core";
 import {TonConnectButton, useTonWallet} from "@tonconnect/ui-react";
 import {useSwapContract} from "@/hooks/useMainContract.ts";
 import {useTonConnect} from "@/hooks/useTonConnect.ts";
@@ -20,6 +20,9 @@ export const Apps: FC = () => {
     const [inputValue, setInputValue] = useState<string>("0");
     const [jettonAmount, setJettonAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true); // Добавлено состояние для загрузки
+    const [balance, setBalance] = useState<number>(0);
+
+
 
     useEffect(() => {
         // Эмуляция задержки для загрузки страницы
@@ -92,14 +95,15 @@ export const Apps: FC = () => {
     return (
         <Page>
             <TonConnectButton className="ton-connect-page__button" />
-
             <div className={'mx-auto max-[90%]'}>
-                <p className={'w-[90%] mx-auto'}>Buy Jetton</p>
-                <div className={'w-[90%] h-64 bg-blue-600 mx-auto rounded-xl my-6'}></div>
+                <p className={'w-[90%] mx-auto text-xl font-bold mt-3'}>Buy Jetton</p>
+                <p className={'w-[90%] mx-auto '}>This is some text that wraps around the image.
+                    The image is floated to the left</p>
+                <div className={'w-[90%] h-64 bg-blue-600 mx-auto rounded-xl my-3'}></div>
                 <Card>
                     <HeadLine
                         title={'Send'}
-                        balance={'3.9908'}
+                        balance={balance}
                         max={'Max'}
                     />
                     <div className={'flex gap-3 items-center justify-between'}>
@@ -118,7 +122,7 @@ export const Apps: FC = () => {
                 <Card>
                     <HeadLine
                         title={'Receive'}
-                        balance={'0'}
+                        balance={balance}
                     />
                     <div className={'flex items-center justify-between'}>
                         <Logo
@@ -128,7 +132,7 @@ export const Apps: FC = () => {
                         <p className={'mr-3 text-xl'}>{jettonAmount}</p>
                     </div>
                 </Card>
-                <div className="flex justify-center mt-4">
+                <div className="flex justify-center mt-3">
                     <Button className={'w-[90%] h-12 bg-blue-600 hover:bg-blue-900'}
                             onClick={submitHandler}>Swap</Button>
                 </div>

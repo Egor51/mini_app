@@ -1,7 +1,7 @@
 import type {FC} from "react";
 interface HeadLineProps{
     title: string;
-    balance: string;
+    balance: number;
     max?: string;
 }
 export const HeadLine: FC<HeadLineProps> = ({title, balance,max}) => {
