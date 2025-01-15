@@ -17,9 +17,10 @@ export const Apps: FC = () => {
     const wallet = useTonWallet();
     const { sendSwapJetton } = useSwapContract(); // Вызов безусловно
     const { sender } = useTonConnect(); // Вызов безусловно
-    const [inputValue, setInputValue] = useState<string>("");
+    const [inputValue, setInputValue] = useState<string>("0");
     const [jettonAmount, setJettonAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true); // Добавлено состояние для загрузки
+
     useEffect(() => {
         // Эмуляция задержки для загрузки страницы
         const timeout = setTimeout(() => {
@@ -28,27 +29,34 @@ export const Apps: FC = () => {
 
         return () => clearTimeout(timeout); // Чистим таймаут при размонтировании
     }, []);
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = parseFloat(event.target.value); // Преобразуем строку в число
-        setInputValue(event.target.value);
-        setJettonAmount(value * 100); // Умножаем на 100
+        const input = event.target.value.trim() || "0"; // Удаляем пробелы, устанавливаем "0" если пусто
+        let value = parseFloat(input);
+
+        if (isNaN(value) || value < 0) {
+            value = 0; // Устанавливаем 0, если значение отрицательное или некорректное
+        }
+        setInputValue(value.toString()); // Обновляем значение в инпуте
+        setJettonAmount(value * 100); // Обновляем JettonAmount
     };
 
-    const submitHandler = () => {
-        const handleSwap = async () => {
-            try {
-                const walletAddress = wallet?.account?.address || ''; // Безопасный доступ
-                await sendSwapJetton(sender, toNano(inputValue), walletAddress);
-            } catch (error) {
-                console.error("Error during swap transaction:", error);
-            }
-        };
+    const submitHandler = async () => {
         const value = parseFloat(inputValue);
-        if(value <= 0){
-            alert("Jetton amount must be greater than 0")
-        } else{
-            handleSwap()
+
+        if (isNaN(value) || value <= 0) {
+            alert("Jetton amount must be greater than 0");
+            return;
         }
+
+        try {
+            const walletAddress = wallet?.account?.address || ''; // Безопасный доступ
+            await sendSwapJetton(sender, toNano(value.toString()), walletAddress); // Ожидаем выполнение транзакции
+            console.log("Swap transaction successful");
+        } catch (error) {
+            console.error("Error during swap transaction:", error);
+        }
+
         console.log("Input Value:", inputValue);
     };
 
