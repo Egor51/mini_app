@@ -36,7 +36,6 @@ export const Apps: FC = () => {
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const input = event.target.value.trim() || "0"; // Удаляем пробелы, устанавливаем "0" если пусто
         let value = parseFloat(input);
-
         if (isNaN(value) || value < 0) {
             value = 0; // Устанавливаем 0, если значение отрицательное или некорректное
         }
@@ -57,10 +56,8 @@ export const Apps: FC = () => {
         } catch (error) {
             console.error("Error during swap transaction:", error);
         }
-
         console.log("Input Value:", inputValue);
     };
-
 
     if (isLoading) {
         return (
@@ -69,6 +66,7 @@ export const Apps: FC = () => {
             </div>
         );
     }
+
     if (!wallet) {
         return (
             <Page>
