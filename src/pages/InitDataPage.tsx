@@ -1,11 +1,12 @@
 import { type FC, useMemo } from 'react';
-import { initData, type User, useSignal } from '@telegram-apps/sdk-react';
+import {initData, type User, useSignal} from '@telegram-apps/sdk-react';
 import { List, Placeholder } from '@telegram-apps/telegram-ui';
 
 import { DisplayData, type DisplayDataRow } from '@/components/DisplayData/DisplayData.tsx';
 import { Page } from '@/components/Page.tsx';
 
 function getUserRows(user: User): DisplayDataRow[] {
+
   return [
     { title: 'id', value: user.id.toString() },
     { title: 'username', value: user.username },

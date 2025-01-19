@@ -20,7 +20,7 @@ export const Apps: FC = () => {
     const [inputValue, setInputValue] = useState<string>("0");
     const [jettonAmount, setJettonAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true); // Добавлено состояние для загрузки
-    const [balance, setBalance] = useState<number>(0);
+    const [balance] = useState<number>(0);
 
 
 
@@ -32,6 +32,7 @@ export const Apps: FC = () => {
 
         return () => clearTimeout(timeout); // Чистим таймаут при размонтировании
     }, []);
+
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const input = event.target.value.trim() || "0"; // Удаляем пробелы, устанавливаем "0" если пусто
@@ -50,7 +51,7 @@ export const Apps: FC = () => {
             return;
         }
         try {
-            const walletAddress = wallet?.account?.address || ''; // Безопасный доступ
+            const walletAddress = wallet?.account?.address || '';
             await sendSwapJetton(sender, toNano(value.toString()), walletAddress); // Ожидаем выполнение транзакции
             console.log("Swap transaction successful");
         } catch (error) {
@@ -58,7 +59,6 @@ export const Apps: FC = () => {
         }
         console.log("Input Value:", inputValue);
     };
-
     if (isLoading) {
         return (
             <div className="flex items-center justify-center h-screen">
@@ -81,9 +81,11 @@ export const Apps: FC = () => {
                                 wallet
                             </Text>
                             <TonConnectButton className="ton-connect-page__button" />
+                            {/*<Button onClick={sendData}>Send Data</Button>*/}
                         </>
                     }
                 />
+
             </Page>
         );
     }

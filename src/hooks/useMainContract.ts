@@ -20,7 +20,7 @@ export function useSwapContract() {
     const client = useTonClient();
     const {  connected } = useTonConnect();
     const [contract, setContract] = useState<OpenedContract<Swap> | null>(null);
-    const contractAddress = "EQBtYcBTWO4K012WcSdX3ydkYlhcJJybSEcpMi_KX2V8HNhB"; // Адрес контракта
+    const contractAddress = "EQCwzeXtYpX-_Jys5VXCshpYd647BLospxBUmQCaGfh6g0Wq"; // Адрес контракта
 
     useEffect(() => {
         async function initializeContract() {
@@ -41,8 +41,8 @@ export function useSwapContract() {
             console.error("Contract or connection not initialized");
             return;
         }
-
-        const to = Address.parse("EQDgSy2QkPHOIACLcc9UTSzxZi_7XH0fa6FyRaZ6Ytoxyq6l");
+       const  master_contract = "EQCctZVB2Y6cbtEuoXAKlcKEM-SG74-PEu_ErViaJM3A6V4v"
+        const to = Address.parse(master_contract);
         const receiverAddr = Address.parse(receiver);
 
         const message: SwapJetton = {
@@ -51,7 +51,7 @@ export function useSwapContract() {
             queryId: BigInt(Math.floor(Date.now() / 1000)),
             receiver: receiverAddr,
             responseDestination: receiverAddr,
-            forwardAmount: toNano(0.7),
+            forwardAmount: toNano(0.01),
             forwardPayload: comment("swap_jetton"),
         };
 

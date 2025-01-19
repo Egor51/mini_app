@@ -23,6 +23,7 @@ export const LaunchParamsPage: FC = () => {
           ]}
         />
       </List>
+
     </Page>
   );
 };
