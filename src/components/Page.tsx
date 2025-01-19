@@ -10,15 +10,15 @@ export function Page({ children, back = true }: PropsWithChildren<{
 }>) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (back) {
-      backButton.show();
-      return backButton.onClick(() => {
-        navigate(-1);
-      });
-    }
-    backButton.hide();
-  }, [back]);
+  // useEffect(() => {
+  //   if (back) {
+  //     backButton.show();
+  //     return backButton.onClick(() => {
+  //       navigate(-1);
+  //     });
+  //   }
+  //   backButton.hide();
+  // }, [back]);
 
   return <>{children}</>;
 }

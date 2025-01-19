@@ -5,24 +5,43 @@ import {Input} from "@/components/UI/input.tsx";
 import {HeadLine} from "@/components/UI/headline.tsx";
 import {Card} from "@/components/UI/Card.tsx";
 import {Button} from "@/components/UI/button.tsx";
-import { toNano} from "@ton/core";
+import {Address, toNano} from "@ton/core";
 import {TonConnectButton, useTonWallet} from "@tonconnect/ui-react";
 import {useSwapContract} from "@/hooks/useMainContract.ts";
 import {useTonConnect} from "@/hooks/useTonConnect.ts";
 import {Placeholder, Text} from "@telegram-apps/telegram-ui";
 import {publicUrl} from "@/helpers/publicUrl.ts";
 import {Paragraph} from "@/components/UI/paragraph.tsx";
+import {useTonClient} from "@/hooks/useTonClient.ts";
 
 export const Apps: FC = () => {
     const wallet = useTonWallet();
+    const client = useTonClient()
     const { sendSwapJetton } = useSwapContract(); // Вызов безусловно
     const { sender } = useTonConnect(); // Вызов безусловно
     const [inputValue, setInputValue] = useState<string>("0");
     const [jettonAmount, setJettonAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true); // Добавлено состояние для загрузки
-    const [balance] = useState<number>(0);
+    const [balance, setBalance] = useState<string | null>(null);
 
 
+    useEffect(() => {
+        const fetchBalance = async () => {
+            if(!client) return
+            if (wallet) {
+                try {
+                    const walletAddress = wallet?.account?.address || ''
+                    const balanceNano = await client.getBalance(Address.parse(walletAddress)); // Баланс в нанотонах
+                    const balanceInTon = Number(balanceNano) / 1e9;
+                    setBalance(balanceInTon.toFixed(4)); // Переводим в тон и форматируем
+                } catch (error) {
+                    console.error("Ошибка при получении баланса:", error);
+                }
+            }
+        };
+
+        fetchBalance();
+    }, [wallet]);
 
     useEffect(() => {
         // Эмуляция задержки для загрузки страницы
@@ -35,13 +54,14 @@ export const Apps: FC = () => {
 
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const input = event.target.value.trim() || "0"; // Удаляем пробелы, устанавливаем "0" если пусто
-        let value = parseFloat(input);
-        if (isNaN(value) || value < 0) {
-            value = 0; // Устанавливаем 0, если значение отрицательное или некорректное
+        const input = event.target.value;
+
+        // Разрешить только числа с точкой
+        if (/^\d*\.?\d*$/.test(input)) {
+            setInputValue(input); // Обновляем строковое значение
+            const numericValue = parseFloat(input) || 0; // Преобразуем в число для вычислений
+            setJettonAmount(numericValue * 100); // Обновляем jettonAmount
         }
-        setInputValue(value.toString()); // Обновляем значение в инпуте
-        setJettonAmount(value * 100); // Обновляем JettonAmount
     };
 
     const submitHandler = async () => {
@@ -92,6 +112,7 @@ export const Apps: FC = () => {
 
     return (
         <Page>
+
             <TonConnectButton className="ton-connect-page__button" />
             <div className={'mx-auto max-[90%]'}>
                 <p className={'w-[90%] mx-auto text-xl font-bold mt-3'}>Buy Jetton</p>
@@ -104,6 +125,21 @@ export const Apps: FC = () => {
                             title={'Send'}
                             balance={balance}
                             max={'Max'}
+                            onclick={() => {
+                                if (balance) {
+                                    // Применяем логику как в handleInputChange
+                                    if (/^\d*\.?\d*$/.test(balance)) {
+                                        const bl = Number(balance) - 0.03
+                                        setInputValue(bl.toString()); // Обновляем строковое значение
+                                        const numericValue = parseFloat(balance) || 0; // Преобразуем в число для вычислений
+                                        setJettonAmount(numericValue * 100); // Обновляем jettonAmount
+                                    }
+                                } else {
+                                    setInputValue(""); // Если balance null или пустое, устанавливаем ""
+                                    setJettonAmount(0); // Сбрасываем jettonAmount
+                                }
+                            }
+                        }
                         />
                         <div className={'flex gap-3 items-center justify-between'}>
                             <Logo
@@ -111,7 +147,7 @@ export const Apps: FC = () => {
                                 title={'Ton'}
                             />
                             <Input
-                                type={'number'}
+                                type={'text'}
                                 className={'max-w-32 h-12 text-xl text-end'}
                                 value={inputValue}
                                 onChange={handleInputChange}
@@ -127,7 +163,7 @@ export const Apps: FC = () => {
                     <Card>
                         <HeadLine
                             title={'Receive'}
-                            balance={balance}
+                            balance={"0"}
                         />
                         <div className={'flex items-center justify-between'}>
                             <Logo
