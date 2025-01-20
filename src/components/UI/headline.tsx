@@ -14,7 +14,7 @@ export const HeadLine: FC<HeadLineProps> = ({title, balance,max,onclick}) => {
             </p>
             <div className={'flex gap-3'}>
                 <p>
-                    balance: {count.toString()}
+                    balance: {count.toString() !== null ? `${balance} TON` : "Loading..."}
                 </p>
                 <p onClick={onclick} className={'text-blue-300'}>
                     {max}

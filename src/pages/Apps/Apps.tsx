@@ -17,8 +17,8 @@ import {useTonClient} from "@/hooks/useTonClient.ts";
 export const Apps: FC = () => {
     const wallet = useTonWallet();
     const client = useTonClient()
-    const { sendSwapJetton } = useSwapContract(); // Вызов безусловно
-    const { sender } = useTonConnect(); // Вызов безусловно
+    const {sendSwapJetton} = useSwapContract(); // Вызов безусловно
+    const {sender} = useTonConnect(); // Вызов безусловно
     const [inputValue, setInputValue] = useState<string>("0");
     const [jettonAmount, setJettonAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true); // Добавлено состояние для загрузки
@@ -27,7 +27,7 @@ export const Apps: FC = () => {
 
     useEffect(() => {
         const fetchBalance = async () => {
-            if(!client) return
+            if (!client || !wallet) return
             if (wallet) {
                 try {
                     const walletAddress = wallet?.account?.address || ''
@@ -39,28 +39,27 @@ export const Apps: FC = () => {
                 }
             }
         };
-
         fetchBalance();
-    }, [wallet]);
+    }, [wallet, client]);
 
     useEffect(() => {
-        // Эмуляция задержки для загрузки страницы
         const timeout = setTimeout(() => {
             setIsLoading(false); // Отключаем индикатор загрузки
         }, 1500); // Устанавливаем время загрузки 1.5 секунды
-
         return () => clearTimeout(timeout); // Чистим таймаут при размонтировании
     }, []);
 
 
+    function extracted(input: string) {
+        setInputValue(input); // Обновляем строковое значение
+        const numericValue = parseFloat(input) || 0; // Преобразуем в число для вычислений
+        setJettonAmount(numericValue * 100); // Обновляем jettonAmount
+    }
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const input = event.target.value;
-
-        // Разрешить только числа с точкой
         if (/^\d*\.?\d*$/.test(input)) {
-            setInputValue(input); // Обновляем строковое значение
-            const numericValue = parseFloat(input) || 0; // Преобразуем в число для вычислений
-            setJettonAmount(numericValue * 100); // Обновляем jettonAmount
+            extracted(input);
         }
     };
 
@@ -82,7 +81,7 @@ export const Apps: FC = () => {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center h-screen">
-                <img src={publicUrl('logo.png')} alt="Loading..." className="h-24 w-24" />
+                <img src={publicUrl('logo.png')} alt="Loading..." className="h-24 w-24"/>
             </div>
         );
     }
@@ -100,7 +99,7 @@ export const Apps: FC = () => {
                                 To display the data related to the TON Connect, it is required to connect your
                                 wallet
                             </Text>
-                            <TonConnectButton className="ton-connect-page__button" />
+                            <TonConnectButton className="ton-connect-page__button"/>
                             {/*<Button onClick={sendData}>Send Data</Button>*/}
                         </>
                     }
@@ -113,7 +112,7 @@ export const Apps: FC = () => {
     return (
         <Page>
 
-            <TonConnectButton className="ton-connect-page__button" />
+            <TonConnectButton className="ton-connect-page__button"/>
             <div className={'mx-auto max-[90%]'}>
                 <p className={'w-[90%] mx-auto text-xl font-bold mt-3'}>Buy Jetton</p>
                 <p className={'w-[90%] mx-auto '}>This is some text that wraps around the image.
@@ -128,15 +127,8 @@ export const Apps: FC = () => {
                             onclick={() => {
                                 if (balance) {
                                     // Применяем логику как в handleInputChange
-                                    if (/^\d*\.?\d*$/.test(balance)) {
-                                        const bl = Number(balance) - 0.03
-                                        setInputValue(bl.toString()); // Обновляем строковое значение
-                                        const numericValue = parseFloat(balance) || 0; // Преобразуем в число для вычислений
-                                        setJettonAmount(numericValue * 100); // Обновляем jettonAmount
-                                    }
-                                } else {
-                                    setInputValue(""); // Если balance null или пустое, устанавливаем ""
-                                    setJettonAmount(0); // Сбрасываем jettonAmount
+                                    const bl = Number(balance) - 0.03
+                                    extracted(bl.toString()); // Обновляем jettonAmount
                                 }
                             }
                         }
@@ -155,8 +147,9 @@ export const Apps: FC = () => {
 
                         </div>
                     </Card>
-                    <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(50%+6px)] h-6 w-6 rounded-full bottom border-primary bg-secondary">
-                        <img src={publicUrl('exchange.png')} alt="Ton" className="w-6 h-6 p-1" onClick={()=> {
+                    <div
+                        className="absolute left-1/2 transform -translate-x-1/2 -translate-y-[calc(50%+6px)] h-6 w-6 rounded-full bottom border-primary bg-secondary">
+                        <img src={publicUrl('exchange.png')} alt="Ton" className="w-6 h-6 p-1" onClick={() => {
                             alert("Listing plane to 10.01.2025");
                         }}/>
                     </div>
