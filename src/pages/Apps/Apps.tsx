@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from 'react';
+import {FC, useContext, useEffect, useState} from 'react';
 import {Page} from "@/components/Page.tsx";
 import {Logo} from "@/components/UI/Logo.tsx";
 import {Input} from "@/components/UI/input.tsx";
@@ -14,6 +14,7 @@ import {publicUrl} from "@/helpers/publicUrl.ts";
 import {Paragraph} from "@/components/UI/paragraph.tsx";
 import {useTonClient} from "@/hooks/useTonClient.ts";
 
+
 export const Apps: FC = () => {
     const wallet = useTonWallet();
     const client = useTonClient()
@@ -23,6 +24,9 @@ export const Apps: FC = () => {
     const [jettonAmount, setJettonAmount] = useState<number>(0);
     const [isLoading, setIsLoading] = useState<boolean>(true); // Добавлено состояние для загрузки
     const [balance, setBalance] = useState<string | null>(null);
+
+
+
 
 
     useEffect(() => {
@@ -62,11 +66,12 @@ export const Apps: FC = () => {
             extracted(input);
         }
     };
-
+function approve (value: number, ){
+        return !(isNaN(value) || value <= 0 || value > Number(balance) || value <= 0.01);
+    }
     const submitHandler = async () => {
         const value = parseFloat(inputValue);
-        if (isNaN(value) || value <= 0) {
-            alert("Jetton amount must be greater than 0");
+        if (!approve(value)) {
             return;
         }
         try {
@@ -168,8 +173,10 @@ export const Apps: FC = () => {
                     </Card>
                 </div>
                 <div className="flex justify-center mt-3">
-                    <Button className={'w-[90%] h-12 bg-blue-600 hover:bg-blue-900'}
-                            onClick={submitHandler}>Swap</Button>
+                  <Button className={'w-[90%] h-12 bg-blue-600 hover:bg-blue-900'}
+                            onClick={submitHandler}
+                          disabled={!approve(parseFloat(inputValue))}
+                  >Swap</Button>
                 </div>
                 <Paragraph/>
                 <Paragraph/>

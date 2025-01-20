@@ -1,11 +1,13 @@
 import type {FC} from "react";
-interface HeadLineProps{
+
+interface HeadLineProps {
     title: string;
     balance: string | null; // Допускаем null
     max?: string;
     onclick?: () => void; // Допускаем функцию
 }
-export const HeadLine: FC<HeadLineProps> = ({title, balance,max,onclick}) => {
+
+export const HeadLine: FC<HeadLineProps> = ({title, balance, max, onclick}) => {
     const count = balance === null ? "0" : balance;
     return (
         <div className={'flex justify-between text-[12px] font-light p-1'}>
