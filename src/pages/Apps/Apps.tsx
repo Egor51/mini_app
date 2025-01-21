@@ -1,4 +1,4 @@
-import {FC, useContext, useEffect, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {Page} from "@/components/Page.tsx";
 import {Logo} from "@/components/UI/Logo.tsx";
 import {Input} from "@/components/UI/input.tsx";
@@ -18,7 +18,7 @@ import {useTonClient} from "@/hooks/useTonClient.ts";
 export const Apps: FC = () => {
     const wallet = useTonWallet();
     const client = useTonClient()
-    const {sendSwapJetton} = useSwapContract(); // Вызов безусловно
+    const {sendSwapJetton} = useSwapContract();
     const {sender} = useTonConnect(); // Вызов безусловно
     const [inputValue, setInputValue] = useState<string>("0");
     const [jettonAmount, setJettonAmount] = useState<number>(0);
@@ -37,7 +37,7 @@ export const Apps: FC = () => {
                     const walletAddress = wallet?.account?.address || ''
                     const balanceNano = await client.getBalance(Address.parse(walletAddress)); // Баланс в нанотонах
                     const balanceInTon = Number(balanceNano) / 1e9;
-                    setBalance(balanceInTon.toFixed(4)); // Переводим в тон и форматируем
+                    setBalance(balanceInTon.toFixed(4));
                 } catch (error) {
                     console.error("Ошибка при получении баланса:", error);
                 }
@@ -105,7 +105,6 @@ function approve (value: number, ){
                                 wallet
                             </Text>
                             <TonConnectButton className="ton-connect-page__button"/>
-                            {/*<Button onClick={sendData}>Send Data</Button>*/}
                         </>
                     }
                 />
@@ -132,8 +131,12 @@ function approve (value: number, ){
                             onclick={() => {
                                 if (balance) {
                                     // Применяем логику как в handleInputChange
+
                                     const bl = Number(balance) - 0.03
-                                    extracted(bl.toString()); // Обновляем jettonAmount
+                                    if (bl <= 0 ) {
+                                        extracted("0");
+                                    }
+                                    extracted(bl.toString());
                                 }
                             }
                         }
@@ -145,7 +148,7 @@ function approve (value: number, ){
                             />
                             <Input
                                 type={'text'}
-                                className={'max-w-32 h-12 text-xl text-end'}
+                                className={'max-w-32 h-12 text-2xl text-end font-bold'}
                                 value={inputValue}
                                 onChange={handleInputChange}
                             />
