@@ -1,7 +1,8 @@
 import type {FC} from "react";
 import {publicUrl} from "@/helpers/publicUrl.ts";
 interface ParagraphProps {
-
+// img: string;
+// text: string;
 }
 export const Paragraph: FC<ParagraphProps> = () => {
     return(
