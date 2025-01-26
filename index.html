@@ -5,11 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#000000"/>
     <title>Telegram Mini App</title>
-    <script type="module" crossorigin src="/mini_app/assets/index-CclTZ7wQ.js"></script>
+    <script type="module" crossorigin src="/mini_app/assets/index-DosZcAld.js"></script>
     <link rel="stylesheet" crossorigin href="/mini_app/assets/index-_AZcMRfH.css">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <!-- Add Telegram Analytics script to HTML head -->
+    <script
+            async
+            src="https://unpkg.com/@telegram-apps/analytics@latest/dist/index.js"
+            onload="initAnalytics()"
+            type="text/javascript"
+    ></script>
+    <script>
+      function initAnalytics() {
+        window.telegramAnalytics.init({
+          token: 'eyJhcHBfbmFtZSI6IkNhcGl0YWwiLCJhcHBfdXJsIjoiaHR0cHMvL3QubWUvbXl0cmFmZmljX2FwcF9ib3QiLCJhcHBfZG9tYWluIjoiaHR0cHM6Ly9lZ29yNTEuZ2l0aHViLmlvL21pbmlfYXBwLyJ9!SkxC+0rsBVxr3uGeJg+HUTfpF9rd1SfEVjzca0Rzt5Y=',
+          appName: 'Capital',
+        });
+      }
+    </script>
   </body>
 </html>
