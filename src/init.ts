@@ -7,6 +7,7 @@ import {
   $debug,
   init as initSDK,
 } from '@telegram-apps/sdk-react';
+import TelegramAnalytics from "@telegram-apps/analytics";
 
 /**
  * Initializes the application and configures its dependencies.
@@ -46,4 +47,9 @@ export function init(debug: boolean): void {
   // Define components-related CSS variables.
   miniApp.bindCssVars();
   themeParams.bindCssVars();
+
+  TelegramAnalytics.init({
+    token: 'eyJhcHBfbmFtZSI6IkNhcGl0YWwiLCJhcHBfdXJsIjoiaHR0cHMvL3QubWUvbXl0cmFmZmljX2FwcF9ib3QiLCJhcHBfZG9tYWluIjoiaHR0cHM6Ly9lZ29yNTEuZ2l0aHViLmlvL21pbmlfYXBwLyJ9!SkxC+0rsBVxr3uGeJg+HUTfpF9rd1SfEVjzca0Rzt5Y=',
+    appName: 'Capital',
+  });
 }

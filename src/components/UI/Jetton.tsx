@@ -77,11 +77,14 @@ export const Jetton: FC = () => {
 
     return (
         <>
-            <div className={'mx-auto max-[90%]'}>
-                {/*<p className={'w-[90%] mx-auto text-xl font-bold mt-3'}>Buy Jetton</p>*/}
-                {/*<p className={'w-[90%] mx-auto '}>This is some text that wraps around the image.*/}
-                {/*    The image is floated to the left</p>*/}
-                {/*<div className={'w-[90%] h-64 bg-blue-600 mx-auto rounded-xl my-3'}></div>*/}
+            <div className={'mx-auto max-w-[90%]'}>
+                <div
+                    className={'mx-auto rounded-xl my-3 border px-3 py-3'}>
+                    <p className="text-lg font-semibold">Jetton $Capital</p>
+                    <p className="text-sm">
+                        Current price: 0.5 TON. Early buyers get the best deal before the game launch!
+                    </p>
+                </div>
                 <div className={'relative'}>
                     <Card>
                         <HeadLine
@@ -93,7 +96,7 @@ export const Jetton: FC = () => {
                                     // Применяем логику как в handleInputChange
 
                                     const bl = Number(balance) - 0.03
-                                    if (bl <= 0 ) {
+                                    if (bl <= 0) {
                                         extracted("0");
                                     }
                                     bl.toFixed(4)
@@ -137,14 +140,17 @@ export const Jetton: FC = () => {
                     </Card>
                 </div>
                 <div className="flex justify-center mt-3">
-                    <Button className={'w-[90%] h-12 bg-blue-600 hover:bg-blue-900'}
+                    <Button className={'w-full h-12 bg-blue-600 hover:bg-blue-900'}
                             onClick={submitHandler}
                             disabled={!approve(parseFloat(inputValue))}
                     >Swap</Button>
                 </div>
-                <Paragraph/>
-                <Paragraph/>
-                <Paragraph/>
+                <Paragraph img={'logo.png'}
+                           text={'Yo, getting in on $Capital now is like finding gold before everyone else shows up. Early birds snag tokens at a sweet discount, and once the game drops, demand’s gonna skyrocket. Translation: your $Capital could be worth way more.'}/>
+                <Paragraph img={'logo.png'}
+                           text={'Think of $Capital as your VIP pass to owning the game. You’ll use these tokens to buy exclusive NFT properties, fund big-time building projects, and rake in that passive income. Start stacking now, and future-you will thank you.'}/>
+                <Paragraph img={'logo.png'}
+                           text={'Here’s the deal—$Capital isn’t infinite. Early adopters get dibs on shaping the game’s economy. As more players join and the hype builds, token value could shoot up faster than a meme stock. Don’t sleep on this one.'}/>
             </div>
         </>
     );

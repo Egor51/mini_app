@@ -49,41 +49,37 @@ export const Apps: FC = () => {
                     <img className={'h-16'} src={publicUrl('logo.png')}/>
                     <div>
                         <p className={'text-xl font-bold '}>Capital City</p>
-                        <p className={''}>This is some text that wraps around the image.
-                            The image is floated to</p>
+                        <p className={''}> Build, trade, and conquer the city’s real estate market.</p>
                     </div>
                 </div>
             </div>
 
-            <div className="flex space-x-2 justify-around items-center mx-auto max-[90%]">
-                {/* Кнопка для переключения на Jetton */}
+            <div className="flex justify-between items-center mx-auto max-w-[90%] ">
                 <button
-                    className={`text-secondary ${
-                        activeComponent === 'jetton' ? 'text-blue-600 border-b-2 border-blue-600 rounded-0' : ''
+                    className={`w-1/3 text-secondary text-lg text-center py-2 ${
+                        activeComponent === 'nft' ? 'text-blue-600 border-b-2 border-blue-600' : ''
+                    }`}
+                    onClick={() => handleButtonClick('nft')}
+                >
+                    Nft
+                </button>
+                <button
+                    className={`w-1/3 text-secondary text-lg text-center py-2 ${
+                        activeComponent === 'jetton' ? 'text-blue-600 border-b-2 border-blue-600' : ''
                     }`}
                     onClick={() => handleButtonClick('jetton')}
                 >
                     Jettons
                 </button>
-                {/* Кнопка для переключения на NFT */}
                 <button
-                    className={`text-secondary ${
-                        activeComponent === 'nft' ? 'text-blue-600 border-b-2 border-blue-600 rounded-0' : ''
-                    }`}
-                    onClick={() => handleButtonClick('nft')}
-                >
-                    NftMarket
-                </button>
-                <button
-                    className={`text-secondary ${
-                        activeComponent === 'info' ? 'text-blue-600 border-b-2 border-blue-500 rounded-0' : ''
+                    className={`w-1/3 text-secondary text-lg text-center py-2 ${
+                        activeComponent === 'info' ? 'text-blue-600 border-b-2 border-blue-600' : ''
                     }`}
                     onClick={() => handleButtonClick('info')}
                 >
-                    InfoProject
+                    Info
                 </button>
             </div>
-            <div className={'w-[90%] h-36 bg-blue-600 mx-auto rounded-xl my-3'}></div>
 
 
             <div>
