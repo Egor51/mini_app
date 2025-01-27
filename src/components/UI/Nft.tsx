@@ -5,7 +5,7 @@ import {NFTCard} from "@/components/UI/nftsmolcard.tsx";
 
 export const Nft: FC = () => {
     return (
-        <div className={'mx-auto w-[90%] bg-background'}>
+        <div className={'mx-auto w-[90%]'}>
             <div className={'mx-auto rounded-xl  shadow-black  px-3 py-3 bg-gradient-to-r from-blue-700 to-blue-900 my-6'}>
 
                 <div className={'flex items-center gap-2'}>

@@ -14,7 +14,7 @@ export const Info: FC = () => {
         <div>
             {/*<div className={'w-[90%] h-36 bg-blue-600 mx-auto rounded-xl my-3'}></div>*/}
 
-            <div className="w-[90%] mx-auto my-6 bg-background">
+            <div className="w-[90%] mx-auto my-6">
                 <h1 className="text-lg font-bold text-blue-600 mb-4">About</h1>
                 <p className="text-md mb-4">
                     <strong>Capital City</strong> is the ultimate economic strategy game where you become the real

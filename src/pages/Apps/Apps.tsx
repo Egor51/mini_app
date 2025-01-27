@@ -43,7 +43,7 @@ export const Apps: FC = () => {
 
     return (
         <Page>
-            <div className={'bg-background w-full'}>
+
             <TonConnectButton className="ton-connect-page__button"/>
             <div className={' mx-auto w-[90%]  mt-4'}>
                 <div className={'flex items-start gap-3'}>
@@ -56,9 +56,9 @@ export const Apps: FC = () => {
                 </div>
             </div>
 
-            <div className="flex justify-between items-center mx-auto max-w-[90%] mt-3 mb-1">
+            <div className="flex justify-between items-center mx-auto max-w-[90%] mt-3 mb-1 text-secondary/30">
                 <button
-                    className={`w-1/3 text-secondary/30 text-lg text-center  ${
+                    className={`w-1/3 text-lg text-center  ${
                         activeComponent === 'nft' ? 'text-secondary border-b-2 border-secondary ' : ''
                     }`}
                     onClick={() => handleButtonClick('nft')}
@@ -66,7 +66,7 @@ export const Apps: FC = () => {
                     Nft
                 </button>
                 <button
-                    className={`w-1/3 text-secondary/30 text-lg text-center  ${
+                    className={`w-1/3 text-lg text-center  ${
                         activeComponent === 'jetton' ? 'text-secondary border-b-2 border-secondary ' : ''
                     }`}
                     onClick={() => handleButtonClick('jetton')}
@@ -74,8 +74,8 @@ export const Apps: FC = () => {
                     Jettons
                 </button>
                 <button
-                    className={`w-1/3 text-secondary/30 text-lg text-center  ${
-                        activeComponent === 'info' ? 'text-secondary border-b-2 border-secondary ' : ''
+                    className={`w-1/3 text-lg text-center  ${
+                        activeComponent === 'info' ? 'border-b-2 border-secondary text-secondary' : ''
                     }`}
                     onClick={() => handleButtonClick('info')}
                 >
@@ -83,8 +83,8 @@ export const Apps: FC = () => {
                 </button>
             </div>
 
-            </div>
-            <div className={'bg-background'}>
+
+            <div className={''}>
                 {activeComponent === 'jetton' && <Jetton/>}
                 {activeComponent === 'nft' && <Nft/>}
                 {activeComponent === 'info' && <Info/>}
