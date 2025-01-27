@@ -19,13 +19,16 @@ export const NFTCard: React.FC<NFTCardProps> = ({imageUrl, title, address, param
                 <img src={publicUrl(imageUrl)} alt={title} className="h-full w-24 rounded-lg mr-4"/>
                 {/* Details Section */}
                 <div className="flex-1">
-                    <p className="font-bold">{title}</p>
-                    <p className="font-light">{address}</p>
-                    <p className="">{param}</p>
-                    <p className=" font-semibold">{price}</p>
+                    <p className="text-sm font-bold">{title}</p>
+                    <p className="font-light text-secondary/60">{address}</p>
+                    <p className="text-secondary/60">{param}</p>
+                    <p className="text-sm font-medium text-blue-300">price: {price} $CAP</p>
                 </div>
             </div>
-            <Button variant={'outline'} className={'w-full'}>Buy</Button>
+            <div className={'flex gap-3'}>
+            <Button variant={'outline'} className={'w-full '}>About  {title}</Button>
+            <Button variant={'outline'} className={''}><img src={''}/></Button>
+            </div>
         </>
     );
 };

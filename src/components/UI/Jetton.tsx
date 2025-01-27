@@ -78,10 +78,9 @@ export const Jetton: FC = () => {
     return (
         <>
             <div className={'mx-auto max-w-[90%]'}>
-                <div
-                    className={'mx-auto rounded-xl my-3 border px-3 py-3'}>
-                    <p className="text-lg font-semibold">Jetton $Capital</p>
-                    <p className="text-sm">
+                <div className={'mx-auto rounded-xl  shadow-black  px-3 py-3 bg-gradient-to-r from-blue-700 to-blue-900 my-6'}>
+                    <p className="text-sm font-semibold">Jetton $Capital</p>
+                    <p className="text-[12px] mt-1">
                         Current price: 0.5 TON. Early buyers get the best deal before the game launch!
                     </p>
                 </div>

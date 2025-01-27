@@ -43,37 +43,39 @@ export const Apps: FC = () => {
 
     return (
         <Page>
+            <div className={'fixed bg-background w-full top-0 left-0 z-50 rounded-b-lg'}>
             <TonConnectButton className="ton-connect-page__button"/>
-            <div className={' mx-auto w-[90%]  my-6'}>
-                <div className={'flex items-center gap-3'}>
-                    <img className={'h-16'} src={publicUrl('logo.png')}/>
+            <div className={' mx-auto w-[90%]  mt-4'}>
+                <div className={'flex items-start gap-3'}>
+                    {/*<img className={'h-10 mt-1'} src={publicUrl('logo.png')}/>*/}
+                    <div className={'h-12 w-12 bg-blue-600 mt-1 rounded'}></div>
                     <div>
-                        <p className={'text-xl font-bold '}>Capital City</p>
-                        <p className={''}> Build, trade, and conquer the city’s real estate market.</p>
+                        <p className={'text-sm font-bold '}>Capital City</p>
+                        <p className={'text-[12px] w-2/3 text-secondary/50'}> Build, trade, and conquer the city’s real estate market</p>
                     </div>
                 </div>
             </div>
 
-            <div className="flex justify-between items-center mx-auto max-w-[90%] ">
+            <div className="flex justify-between items-center mx-auto max-w-[90%] mt-3 mb-1">
                 <button
-                    className={`w-1/3 text-secondary text-lg text-center py-2 ${
-                        activeComponent === 'nft' ? 'text-blue-600 border-b-2 border-blue-600' : ''
+                    className={`w-1/3 text-secondary/30 text-lg text-center  ${
+                        activeComponent === 'nft' ? 'text-secondary/50 border-b-2 border-secondary/50 ' : ''
                     }`}
                     onClick={() => handleButtonClick('nft')}
                 >
                     Nft
                 </button>
                 <button
-                    className={`w-1/3 text-secondary text-lg text-center py-2 ${
-                        activeComponent === 'jetton' ? 'text-blue-600 border-b-2 border-blue-600' : ''
+                    className={`w-1/3 text-secondary/30 text-lg text-center  ${
+                        activeComponent === 'jetton' ? 'text-secondary/50 border-b-2 border-secondary/50 ' : ''
                     }`}
                     onClick={() => handleButtonClick('jetton')}
                 >
                     Jettons
                 </button>
                 <button
-                    className={`w-1/3 text-secondary text-lg text-center py-2 ${
-                        activeComponent === 'info' ? 'text-blue-600 border-b-2 border-blue-600' : ''
+                    className={`w-1/3 text-secondary/30 text-lg text-center  ${
+                        activeComponent === 'info' ? 'text-secondary/50 border-b-2 border-secondary/50 ' : ''
                     }`}
                     onClick={() => handleButtonClick('info')}
                 >
@@ -81,8 +83,8 @@ export const Apps: FC = () => {
                 </button>
             </div>
 
-
-            <div>
+            </div>
+            <div className={'pt-[180px]'}>
                 {activeComponent === 'jetton' && <Jetton/>}
                 {activeComponent === 'nft' && <Nft/>}
                 {activeComponent === 'info' && <Info/>}

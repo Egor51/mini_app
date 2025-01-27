@@ -14,16 +14,16 @@ export const Info: FC = () => {
         <div>
             {/*<div className={'w-[90%] h-36 bg-blue-600 mx-auto rounded-xl my-3'}></div>*/}
 
-            <div className="w-[90%] mx-auto my-6 p-4">
-                <h1 className="text-2xl font-bold text-blue-600 mb-4">About Capital City</h1>
-                <p className="text-lg mb-4">
+            <div className="w-[90%] mx-auto my-6">
+                <h1 className="text-lg font-bold text-blue-600 mb-4">About</h1>
+                <p className="text-md mb-4">
                     <strong>Capital City</strong> is the ultimate economic strategy game where you become the real
                     estate tycoon you always dreamed of. Buy, sell, and rent properties, or invest in building epic
                     skyscrapers. The twist? Every piece of real estate is an NFT that earns you real $Capital tokens
                     while you chill.
                 </p>
                 <div>
-                    <h2 className="text-xl font-semibold mb-2">Why This Game Slaps</h2>
+                    <h2 className="text-md font-semibold mb-2">Why This Game Slaps</h2>
                     <ul className="list-disc pl-6">
                         {advantages.map((advantage, index) => (
                             <li key={index} className="mb-2">
@@ -33,7 +33,7 @@ export const Info: FC = () => {
                     </ul>
                 </div>
                 <div className="mt-4">
-                    <h2 className="text-xl font-semibold mb-2">Why Capital City is a Game-Changer</h2>
+                    <h2 className="text-md font-semibold mb-2">Why Capital City is a Game-Changer</h2>
                     <p className="">
                         Capital City isn’t just a game—it’s a lifestyle. You’re not just playing; you’re investing in
                         NFTs that bring passive income straight to your wallet in $Capital. It’s a mix of strategy,
