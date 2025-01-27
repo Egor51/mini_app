@@ -43,7 +43,7 @@ export const Apps: FC = () => {
 
     return (
         <Page>
-            <div className={'fixed bg-background w-full top-0 left-0 z-50 rounded-b-lg'}>
+            <div className={'bg-background w-full'}>
             <TonConnectButton className="ton-connect-page__button"/>
             <div className={' mx-auto w-[90%]  mt-4'}>
                 <div className={'flex items-start gap-3'}>
@@ -84,7 +84,7 @@ export const Apps: FC = () => {
             </div>
 
             </div>
-            <div className={'pt-[180px]'}>
+            <div className={'bg-background'}>
                 {activeComponent === 'jetton' && <Jetton/>}
                 {activeComponent === 'nft' && <Nft/>}
                 {activeComponent === 'info' && <Info/>}
