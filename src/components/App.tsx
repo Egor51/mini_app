@@ -8,7 +8,7 @@ export function App() {
   const isDark = useSignal(miniApp.isDark);
   return (
     <AppRoot
-        appearance={'dark'}
+        // appearance={'dark'}
         platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
     >
       <HashRouter>
