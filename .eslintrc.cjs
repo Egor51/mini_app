@@ -32,5 +32,6 @@ module.exports = {
   ],
   rules: {
     'react/react-in-jsx-scope': 0,
+    // 'no-mixed-spaces-and-tabs': 'off',
   }
 };

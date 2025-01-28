@@ -6,6 +6,7 @@ import {TonConnectButton, useTonWallet} from "@tonconnect/ui-react";
 import {Main} from "@/components/Main/Main.tsx";
 import {Nft} from "@/components/UI/Nft.tsx";
 import {Info} from "@/components/UI/Info.tsx";
+import {ThemeToggleButton} from "@/components/ThemeToggleButton.tsx";
 
 
 export const Apps: FC = () => {
@@ -42,10 +43,10 @@ export const Apps: FC = () => {
     }
 
     return (
-        <Page>
+        <div className={''}>
 
             <TonConnectButton className="ton-connect-page__button"/>
-            <div className={' mx-auto w-[90%]  mt-4'}>
+            <div className={' mx-auto w-[90%]  mt-4 '}>
                 <div className={'flex items-start gap-3'}>
                     {/*<img className={'h-10 mt-1'} src={publicUrl('logo.png')}/>*/}
                     <div className={'h-12 w-12 bg-blue-600 mt-1 rounded'}></div>
@@ -55,7 +56,7 @@ export const Apps: FC = () => {
                     </div>
                 </div>
             </div>
-
+            {/*<ThemeToggleButton/>*/}
             <div className="flex justify-between items-center mx-auto max-w-[90%] mt-3 mb-1 text-secondary/30">
                 <button
                     className={`w-1/3 text-lg text-center  ${
@@ -89,6 +90,6 @@ export const Apps: FC = () => {
                 {activeComponent === 'nft' && <Nft/>}
                 {activeComponent === 'info' && <Info/>}
             </div>
-        </Page>
+        </div>
     );
 };
