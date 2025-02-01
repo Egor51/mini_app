@@ -1,25 +1,25 @@
 import {FC} from "react";
-import {Placeholder, Text} from "@telegram-apps/telegram-ui";
 import {TonConnectButton} from "@tonconnect/ui-react";
-import {Page} from "@/components/Page.tsx";
 
 export const Main: FC = () => {
     return (
-        <Page>
-            <Placeholder
-                className="ton-connect-page__placeholder"
-                header="MyTraffic"
-                description={
-                    <>
+        <div className={'w-[90%] mx-auto'}>
 
-                        <Text>
-                            To display the data related to the TON Connect, it is required to connect your
-                            wallet
-                        </Text>
-                        <TonConnectButton className="ton-connect-page__button"/>
-                    </>
-                }
-            />
-        </Page>
+            <div className={'h-36 bg-blue-600 mt-14 rounded-lg'}></div>
+            <p className={'text-sm mt-3'}>
+                To display the data related to the TON Connect, it is required to connect your
+                wallet
+                To display the data related to the TON Connect, it is required to connect your
+                wallet
+            </p>
+            <div className="flex items-center justify-center mt-3">
+                <TonConnectButton className="ton-connect-page__button"/>
+            </div>
+            <div className={'h-14 border mt-3 rounded-lg'}></div>
+            <div className={'h-14 border mt-3 rounded-lg'}></div>
+            <div className={'h-14 border mt-3 rounded-lg'}></div>
+            <div className={'h-14 border mt-3 rounded-lg'}></div>
+
+        </div>
     );
 }

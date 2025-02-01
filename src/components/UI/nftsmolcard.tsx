@@ -27,7 +27,7 @@ export const NFTCard: React.FC<NFTCardProps> = ({imageUrl, title, address, param
             </div>
             <div className={'flex gap-3'}>
             <Button variant={'outline'} className={'w-full '}>About  {title}</Button>
-            <Button variant={'outline'} className={''}><img src={''}/></Button>
+            <Button variant={'outline'} ><img className={'w-6'} src={publicUrl('love.png')}/></Button>
             </div>
         </>
     );
