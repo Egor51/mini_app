@@ -10,30 +10,58 @@ const paragraphTexts = [
     // "Take your first step into the decentralized economy. Explore, buy, and trade NFT properties today and secure your place in the ever-expanding world of Capital City. The future is digital, and you’re at the forefront."
 ];
 
+export const nftProperties = [
+    {
+        id: "1",
+        imageUrl: "officebuilding.webp",
+        title: "Luxury Apartment",
+        address: "Downtown City Center",
+        param: "2 Rooms, 120 sqm",
+        description: "Description: Discover your dream home! This stunning two-story luxury house is located in the prestigious \n" +
+            "        neighborhood of {property.address}. Boasting {property.param}, it offers a modern design, abundant natural light \n" +
+            "        through large windows, and a beautifully landscaped yard. Perfect for families or professionals seeking both \n" +
+            "        comfort and style.",
+        price: "120,000"
+    },
+    {
+        id: "2",
+        imageUrl: "house.webp",
+        title: "Modern Loft",
+        address: "Uptown District 12, 1A 4/12",
+        param: "1 Room, 80 sqm",
+        description: "Description: Discover your dream home! This stunning two-story luxury house is located in the prestigious \n" +
+            "        neighborhood of {property.address}. Boasting {property.param}, it offers a modern design, abundant natural light \n" +
+            "        through large windows, and a beautifully landscaped yard. Perfect for families or professionals seeking both \n" +
+            "        comfort and style.",
+        price: "120,000"
+    },
+    {
+        id: "3",
+        imageUrl: "building.webp",
+        title: "Penthouse Suite",
+        address: "Skyline Tower, Level 42",
+        param: "3 Rooms, 200 sqm",
+        description: "Description: Discover your dream home! This stunning two-story luxury house is located in the prestigious \n" +
+            "        neighborhood of {property.address}. Boasting {property.param}, it offers a modern design, abundant natural light \n" +
+            "        through large windows, and a beautifully landscaped yard. Perfect for families or professionals seeking both \n" +
+            "        comfort and style.",
+        price: "120,000"
+    },
+    {
+        id: "4",
+        imageUrl: "luxapartment.webp",
+        title: "Penthouse Suite",
+        address: "Skyline Tower, Level 42",
+        param: "3 Rooms, 200 sqm",
+        description: "Description: Discover your dream home! This stunning two-story luxury house is located in the prestigious \n" +
+            "        neighborhood of {property.address}. Boasting {property.param}, it offers a modern design, abundant natural light \n" +
+            "        through large windows, and a beautifully landscaped yard. Perfect for families or professionals seeking both \n" +
+            "        comfort and style.",
+        price: "120,000"
+    }
+];
+
 export const Nft: FC = () => {
-    const nftProperties = [
-        {
-            imageUrl: "ofice.png",
-            title: "Luxury Apartment",
-            address: "Downtown City Center",
-            param: "2 Rooms, 120 sqm",
-            price: "120,000"
-        },
-        {
-            imageUrl: "house-lux.png",
-            title: "Modern Loft",
-            address: "Uptown District 12, 1A 4/12",
-            param: "1 Room, 80 sqm",
-            price: "120,000"
-        },
-        {
-            imageUrl: "house-lux2.png",
-            title: "Penthouse Suite",
-            address: "Skyline Tower, Level 42",
-            param: "3 Rooms, 200 sqm",
-            price: "120,000"
-        }
-    ];
 
     return (
         <div className={'mx-auto w-[90%]'}>
@@ -50,6 +78,7 @@ export const Nft: FC = () => {
             {nftProperties.map((property, index) => (
                 <NFTCard
                     key={index}
+                    id = {property.id}
                     imageUrl={property.imageUrl}
                     title={property.title}
                     address={property.address}

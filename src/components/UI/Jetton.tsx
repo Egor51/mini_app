@@ -1,4 +1,4 @@
-import {FC, useEffect, useRef, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {Logo} from "@/components/UI/Logo.tsx";
 import {Input} from "@/components/UI/input.tsx";
 import {HeadLine} from "@/components/UI/headline.tsx";
@@ -11,6 +11,7 @@ import {useTonConnect} from "@/hooks/useTonConnect.ts";
 import {Paragraph} from "@/components/UI/paragraph.tsx";
 import {useTonClient} from "@/hooks/useTonClient.ts";
 import {CardInfo} from "@/components/UI/CardInfo.tsx";
+import {sendTransaction} from "../../../api/newUser.ts";
 
 const paragraphTokens = [
     "Yo, getting in on $Capital now is like finding gold before everyone else shows up. Early birds snag tokens at a sweet discount, and once the game drops, demand’s gonna skyrocket. Translation: your $Capital could be worth way more.",
@@ -69,7 +70,8 @@ export const Jetton: FC = () => {
         }
         try {
             const walletAddress = wallet?.account?.address || '';
-            await sendSwapJetton(sender, toNano(value.toString()), walletAddress); // Ожидаем выполнение транзакции
+            await sendSwapJetton(sender, toNano(value.toString()), walletAddress);
+            // Ожидаем выполнение транзакции
             console.log("Swap transaction successful");
         } catch (error) {
             console.error("Error during swap transaction:", error);

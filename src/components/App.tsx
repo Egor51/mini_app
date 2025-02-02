@@ -1,9 +1,14 @@
 import { useLaunchParams, miniApp, useSignal} from '@telegram-apps/sdk-react';
 
 import {Apps} from "@/pages/Apps/Apps.tsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {HashRouter, Route, Routes} from "react-router-dom";
+import {ApartmentPage} from "@/pages/Apps/ApartmentPage.tsx";
+import {Loading} from "@/components/UI/loading.tsx";
 
 export function App() {
+  const [isLoading, setIsLoading] = useState<boolean>(true); // Добавлено состояние для загрузки
+
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
   useEffect(() => {
@@ -16,6 +21,20 @@ export function App() {
       html.classList.remove('dark');
     }
   }, [isDark]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false); // Отключаем индикатор загрузки
+    }, 1500); // Устанавливаем время загрузки 1.5 секунды
+    return () => clearTimeout(timeout); // Чистим таймаут при размонтировании
+  }, []);
+
+
+  if (isLoading) {
+    return (
+        <Loading/>
+    );
+  }
   return (
     // <AppRoot
     //     appearance={isDark ? 'dark' : 'light'}
@@ -28,6 +47,11 @@ export function App() {
     //     </Routes>
     //   </HashRouter>
     // </AppRoot>
-      <Apps />
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<Apps />} />
+          <Route path="/apartment/:id" element={<ApartmentPage />} />
+        </Routes>
+      </HashRouter>
   );
 }

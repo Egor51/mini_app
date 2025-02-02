@@ -1,12 +1,13 @@
 import {FC, useEffect, useState} from 'react';
 import {publicUrl} from "@/helpers/publicUrl.ts";
 import {Jetton} from "@/components/UI/Jetton.tsx";
-import {TonConnectButton} from "@tonconnect/ui-react";
+import {TonConnectButton, useTonWallet} from "@tonconnect/ui-react";
 import {initData, useSignal} from '@telegram-apps/sdk-react';
 
 import {Nft} from "@/components/UI/Nft.tsx";
 import {Info} from "@/components/UI/Info.tsx";
-import {sendUserVisit} from "../../../api/newUser.ts";
+import {addWallet, sendUserVisit} from "../../../api/newUser.ts";
+import {Loading} from "@/components/UI/loading.tsx";
 
 
 const buttons = [
@@ -17,15 +18,16 @@ const buttons = [
 
 
 export const Apps: FC = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(true); // Добавлено состояние для загрузки
-    const [activeComponent, setActiveComponent] = useState<string>("jetton"); // Начальное состояние
+    const [activeComponent, setActiveComponent] = useState<string>("nft"); // Начальное состояние
     const initDataState = useSignal(initData.state);
+    const wallet = useTonWallet();
+
     useEffect(() => {
         if (initDataState?.user) {
             const chatId = initDataState?.user?.id?.toString();
             console.log(chatId)
             if(chatId){
-                sendUserVisit(chatId.toString());
+               sendUserVisit(chatId.toString());
             } else {
                 console.log("No chatId")
             }
@@ -34,25 +36,19 @@ export const Apps: FC = () => {
     }, [initDataState?.user]);
 
 
+    useEffect(() => {
+        if (wallet || initDataState?.user) {
+            const chatId = initDataState?.user?.id?.toString();
+            const walletAddress = wallet?.account?.address || ''
+            if(chatId){
+                addWallet(chatId, walletAddress);
+            }
+        }
+    }, [wallet]);
+
     const handleButtonClick = (component: string) => {
         setActiveComponent(component); // Обновляем состояние
     };
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setIsLoading(false); // Отключаем индикатор загрузки
-        }, 1500); // Устанавливаем время загрузки 1.5 секунды
-        return () => clearTimeout(timeout); // Чистим таймаут при размонтировании
-    }, []);
-
-
-    if (isLoading) {
-        return (
-            <div className="flex items-center justify-center h-screen">
-                <img src={publicUrl('logo.png')} alt="Loading..." className="h-24 w-24"/>
-            </div>
-        );
-    }
 
     return (
         <div>
