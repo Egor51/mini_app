@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { Address, comment, toNano, Cell, OpenedContract } from "@ton/core";
-import { useTonClient } from "./useTonClient.ts";
-import { useTonConnect } from "./useTonConnect.ts";
+import {useEffect, useState} from "react";
+import {Address, comment, toNano, Cell, OpenedContract} from "@ton/core";
+import {useTonClient} from "./useTonClient.ts";
+import {useTonConnect} from "./useTonConnect.ts";
 
-import { Sender } from "@ton/core";
+import {Sender} from "@ton/core";
 import {Swap} from "../contract/SimpleCounter.ts";
 
 interface SwapJetton {
@@ -18,7 +18,7 @@ interface SwapJetton {
 
 export function useSwapContract() {
     const client = useTonClient();
-    const {  connected } = useTonConnect();
+    const {connected} = useTonConnect();
     const [contract, setContract] = useState<OpenedContract<Swap> | null>(null);
     const contractAddress = "EQCwzeXtYpX-_Jys5VXCshpYd647BLospxBUmQCaGfh6g0Wq"; // Адрес контракта
 
@@ -29,6 +29,7 @@ export function useSwapContract() {
             const openedContract = client.open(contractInstance) as OpenedContract<Swap>;
             setContract(openedContract);
         }
+
         initializeContract();
     }, [client, contractAddress]);
 
@@ -41,7 +42,7 @@ export function useSwapContract() {
             console.error("Contract or connection not initialized");
             return;
         }
-       const  master_contract = "EQCctZVB2Y6cbtEuoXAKlcKEM-SG74-PEu_ErViaJM3A6V4v"
+        const master_contract = "EQD1YoH0Qb6DBgRkYIC9Vxi5VbgqMiiisFLo_yL68JcecwGs"
         const to = Address.parse(master_contract);
         const receiverAddr = Address.parse(receiver);
 
@@ -56,7 +57,7 @@ export function useSwapContract() {
         };
 
         try {
-            await contract.send(sender, { value, bounce: false }, message);
+            await contract.send(sender, {value, bounce: false}, message);
             console.log(`SwapJetton sent to ${receiverAddr.toString()}`);
         } catch (error) {
             console.error("Error during SwapJetton transaction:", error);

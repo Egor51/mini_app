@@ -7,15 +7,13 @@ import {initData, useSignal} from '@telegram-apps/sdk-react';
 import {Nft} from "@/components/UI/Nft.tsx";
 import {Info} from "@/components/UI/Info.tsx";
 import {addWallet, sendUserVisit} from "../../../api/newUser.ts";
-import {Loading} from "@/components/UI/loading.tsx";
-
+import {DevelopmentPopup} from "@/pages/Apps/PopUpDv.tsx";
 
 const buttons = [
     { id: "nft", label: "Nft" },
     { id: "jetton", label: "Jettons" },
     { id: "info", label: "Info" }
 ];
-
 
 export const Apps: FC = () => {
     const [activeComponent, setActiveComponent] = useState<string>("nft"); // Начальное состояние
@@ -83,6 +81,7 @@ export const Apps: FC = () => {
                 {activeComponent === 'nft' && <Nft/>}
                 {activeComponent === 'info' && <Info/>}
             </div>
+            <DevelopmentPopup/>
         </div>
     );
 };

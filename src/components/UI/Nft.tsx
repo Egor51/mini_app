@@ -6,60 +6,53 @@ import {publicUrl} from "@/helpers/publicUrl.ts";
 
 const paragraphTexts = [
     "Discover the future of real estate with NFT technology. Each property in Capital City is a unique, blockchain-backed NFT that you truly own. Invest in apartments, lofts, or commercial spaces, and turn your virtual assets into real income in $Capital.",
-    // "Owning an NFT property in Capital City isn’t just about style—it’s about strategy. Rent out your properties for passive income, sell them when the market peaks, or hold them as valuable long-term investments. The city’s growth is your growth!",
-    // "Take your first step into the decentralized economy. Explore, buy, and trade NFT properties today and secure your place in the ever-expanding world of Capital City. The future is digital, and you’re at the forefront."
+    "Owning an NFT property in Capital City isn’t just about style—it’s about strategy. Rent out your properties for passive income, sell them when the market peaks, or hold them as valuable long-term investments. The city’s growth is your growth!",
+    "Take your first step into the decentralized economy. Explore, buy, and trade NFT properties today and secure your place in the ever-expanding world of Capital City. The future is digital, and you’re at the forefront."
 ];
 
 export const nftProperties = [
     {
         id: "1",
         imageUrl: "officebuilding.webp",
-        title: "Luxury Apartment",
-        address: "Downtown City Center",
-        param: "2 Rooms, 120 sqm",
-        description: "Description: Discover your dream home! This stunning two-story luxury house is located in the prestigious \n" +
-            "        neighborhood of {property.address}. Boasting {property.param}, it offers a modern design, abundant natural light \n" +
-            "        through large windows, and a beautifully landscaped yard. Perfect for families or professionals seeking both \n" +
-            "        comfort and style.",
-        price: "120,000"
+        title: "Modern Office Building",
+        address: "DevCap Business District",
+        param: ["5 floors", "40 offices", "2600 sqm"],
+        description: "This modern 5-story office building is located in the bustling DevCap Business District. It features 40 office spaces with a contemporary design and a total area of 2600 sqm. The building is newly renovated and offers excellent daily income of 1000 $CAP. Ideal for businesses seeking a premium location.",
+        price: "100,000 $CAP",
+        income: "1000 $CAP/day"
     },
     {
         id: "2",
         imageUrl: "house.webp",
-        title: "Modern Loft",
-        address: "Uptown District 12, 1A 4/12",
-        param: "1 Room, 80 sqm",
-        description: "Description: Discover your dream home! This stunning two-story luxury house is located in the prestigious \n" +
-            "        neighborhood of {property.address}. Boasting {property.param}, it offers a modern design, abundant natural light \n" +
-            "        through large windows, and a beautifully landscaped yard. Perfect for families or professionals seeking both \n" +
-            "        comfort and style.",
-        price: "120,000"
+        title: "Luxury Family House",
+        address: "Luxury Residential Area",
+        param: ["5 rooms", "2 bathrooms", "1 pool", "210 sqm"],
+        description: "This beautiful 2-story family home is located in the cozy Luxury Residential Area. With 5 spacious rooms, 2 bathrooms, and a private pool, the house offers 210 sqm of modern living space. Recently renovated, it's perfect for families seeking comfort and tranquility. Daily income: 100 $CAP.",
+        price: "5,000 $CAP",
+        income: "100 $CAP/day"
     },
     {
         id: "3",
         imageUrl: "building.webp",
-        title: "Penthouse Suite",
-        address: "Skyline Tower, Level 42",
-        param: "3 Rooms, 200 sqm",
-        description: "Description: Discover your dream home! This stunning two-story luxury house is located in the prestigious \n" +
-            "        neighborhood of {property.address}. Boasting {property.param}, it offers a modern design, abundant natural light \n" +
-            "        through large windows, and a beautifully landscaped yard. Perfect for families or professionals seeking both \n" +
-            "        comfort and style.",
-        price: "120,000"
+        title: "PalmLuxury Residential Complex",
+        address: "Luxury Residential Area",
+        param: ["15 floors", "25 apartments", "1 penthouse", "2100 sqm"],
+        description: "This premium 15-story residential complex, PalmLuxury, offers 25 luxurious apartments and a stunning penthouse. The building includes a stylish lobby on the ground floor and covers a total area of 2100 sqm. Located in a serene neighborhood, it generates an impressive daily income of 1200 $CAP.",
+        price: "300,000 $CAP",
+        income: "1200 $CAP/day"
     },
     {
         id: "4",
         imageUrl: "luxapartment.webp",
-        title: "Penthouse Suite",
-        address: "Skyline Tower, Level 42",
-        param: "3 Rooms, 200 sqm",
-        description: "Description: Discover your dream home! This stunning two-story luxury house is located in the prestigious \n" +
-            "        neighborhood of {property.address}. Boasting {property.param}, it offers a modern design, abundant natural light \n" +
-            "        through large windows, and a beautifully landscaped yard. Perfect for families or professionals seeking both \n" +
-            "        comfort and style.",
-        price: "120,000"
+        title: "OceanLuxury Penthouse",
+        address: "Luxury Residential Area",
+        param: ["320 sqm", "6 rooms", "3 bathrooms", "1 pool", "bar", "cinema"],
+        description: "This premium-class penthouse is part of the OceanLuxury complex, offering an unmatched living experience. Spanning 320 sqm, it features 6 spacious rooms, 3 bathrooms, a private pool, a bar, and a cinema. Recently renovated, it's located in the peaceful Luxury Residential Area. Daily income: 500 $CAP.",
+        price: "100,000 $CAP",
+        income: "500 $CAP/day"
     }
 ];
+
 
 export const Nft: FC = () => {
 

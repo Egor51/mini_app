@@ -2,9 +2,10 @@ import { useLaunchParams, miniApp, useSignal} from '@telegram-apps/sdk-react';
 
 import {Apps} from "@/pages/Apps/Apps.tsx";
 import {useEffect, useState} from "react";
-import {HashRouter, Route, Routes} from "react-router-dom";
-import {ApartmentPage} from "@/pages/Apps/ApartmentPage.tsx";
+import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
+import {Apartment} from "@/pages/Apps/Apartment.tsx";
 import {Loading} from "@/components/UI/loading.tsx";
+import {routes} from "@/navigation/routes.tsx";
 
 export function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true); // Добавлено состояние для загрузки
@@ -40,18 +41,18 @@ export function App() {
     //     appearance={isDark ? 'dark' : 'light'}
     //     platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
     // >
-    //   <HashRouter>
-    //     <Routes>
-    //       {routes.map((route) => <Route key={route.path} {...route} />)}
-    //       <Route path="*" element={<Navigate to="/apps"/>}/>
-    //     </Routes>
-    //   </HashRouter>
-    // </AppRoot>
       <HashRouter>
         <Routes>
-          <Route path="/" element={<Apps />} />
-          <Route path="/apartment/:id" element={<ApartmentPage />} />
+          {routes.map((route) => <Route key={route.path} {...route} />)}
+          <Route path="*" element={<Navigate to="/apps"/>}/>
         </Routes>
       </HashRouter>
+    // </AppRoot>
+    //   <HashRouter>
+    //     <Routes>
+    //       <Route path="/apps" element={<Apps />} />
+    //       <Route path="/apartment/:id" element={<ApartmentPage />} />
+    //     </Routes>
+    //   </HashRouter>
   );
 }
