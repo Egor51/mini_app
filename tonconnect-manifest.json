@@ -1,8 +1,7 @@
 {
-  "url": "https://ton.vote",
-  "name": "TON Vote",
-  "iconUrl": "https://ton.vote/logo.png",
-  "termsUrl": "https://ton.vote",
-  "privacyUrl": "https://ton.vote"
+  "url": "https://mytraffic.space",
+  "name": "Capital city",
+  "iconUrl": "https://raw.githubusercontent.com/Egor51/clickcoin/refs/heads/main/logo_game.png",
+  "termsUrl": "https://t.me/my_traffic_group",
+  "privacyUrl": "https://mytraffic.space/privacy"
 }
-
